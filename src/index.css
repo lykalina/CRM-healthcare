@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+    --color-bg-primary: #F5F4F8;
+    --color-bg-secondary: #8F6AFE;
+    --color-bg-border: #A7A7FB;
+
+    --color-font-primary: #353535;
+    --color-font-accent: #8F6AFE;
+    --color-font-secondary: #FFFFFF;
+    --color-font-shady: #979797;
+
+    --color-bg-icon: #545EBA;
+    --color-bg-active: #959DE8;
+    --color-border-active: #616CCC;
+}
+
+@font-face {
+    font-family: "Sora";
+    src: url("./assets/fonts/Sora.ttf");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sora";
+    src: url("./assets/fonts/Karla.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@theme {
+    --font-title: "Sora", sans-serif;
+    --font-text: "Karla", sans-serif;
+}
