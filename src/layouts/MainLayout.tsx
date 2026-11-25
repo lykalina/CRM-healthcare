@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import ArrowIcon from "../shared/icons/ArrowIcon/ArrowIcon";
-import MenuTab from "../shared/MenuTab/MenuTab";
+import MenuTab from "../shared/components/MenuTab/MenuTab";
 import { NAV_ITEMS } from "./navItems";
 import {useMenuToggle} from "../shared/hooks/useMenuToggle.ts";
 
@@ -8,7 +8,7 @@ export default function MainLayout() {
     const { isOpen, toggle } = useMenuToggle();
 
     return (
-        <div className="flex">
+        <div className="flex bg-bg-primary">
             <nav
                 className={`bg-bg-secondary rounded-[10px] pt-[49px] flex flex-col items-center h-screen transition-[width] duration-300 ease-in-out overflow-hidden ${
                     isOpen ? "w-[200px]" : "w-[100px]"
@@ -46,7 +46,7 @@ export default function MainLayout() {
                     ))}
                 </div>
             </nav>
-            <main className="flex-1">
+            <main className="flex-1 pt-[50px] pr-[20px] pb-[28px] pl-[20px]">
                 <Outlet />
             </main>
         </div>
