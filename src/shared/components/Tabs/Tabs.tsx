@@ -11,7 +11,7 @@ export interface TabsProps {
 
 export default function Tabs({ tabs = [], onSelect }: TabsProps) {
     return (
-        <div className="flex text-font-tabs text-[24px] border-b border-bg-border">
+        <div className="flex text-font-tabs text-[22px] border-b border-bg-border">
             {tabs.map((tab) => (
                 <button
                     key={tab.id}

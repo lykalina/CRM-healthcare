@@ -8,9 +8,9 @@ export default function MainLayout() {
     const { isOpen, toggle } = useMenuToggle();
 
     return (
-        <div className="flex bg-bg-primary">
+        <div className="flex bg-bg-primary relative">
             <nav
-                className={`bg-bg-secondary rounded-[10px] pt-[49px] flex flex-col items-center h-screen transition-[width] duration-300 ease-in-out overflow-hidden ${
+                className={`bg-bg-secondary rounded-[10px] pt-[49px] flex flex-col items-center h-screen transition-[width] duration-300 ease-in-out overflow-hidden fixed ${
                     isOpen ? "w-[200px]" : "w-[100px]"
                 }`}
             >
@@ -46,7 +46,7 @@ export default function MainLayout() {
                     ))}
                 </div>
             </nav>
-            <main className="flex-1 pt-[50px] pr-[20px] pb-[28px] pl-[20px]">
+            <main className={`flex-1 pt-[50px] pr-[20px] pb-[28px] ${isOpen ? "pl-[220px]" : "pl-[120px]"}`}>
                 <Outlet />
             </main>
         </div>
