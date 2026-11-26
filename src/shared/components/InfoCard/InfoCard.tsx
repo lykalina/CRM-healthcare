@@ -1,6 +1,6 @@
-import { useState } from "react";
-import EditIcon from "../../icons/EditIcon/EditIcon.tsx";
-import Button from "../Button/Button.tsx";
+import { useState } from 'react';
+import EditIcon from '../../icons/EditIcon/EditIcon';
+import Button from '../Button/Button';
 
 export interface InfoCardRow {
     id: string;
@@ -63,29 +63,19 @@ export default function InfoCard({ infoCard, onSave }: InfoCardComponentProps) {
                             onClick={startEditing}
                             aria-label="Редактировать"
                         >
-                            <EditIcon
-                                className="cursor-pointer"
-                            />
+                            <EditIcon className="cursor-pointer" />
                         </button>
                     ) : (
                         <>
-                            <Button
-                                title='Cancel'
-                                icon={false}
-                                onClick={cancelEditing}
-                            />
-                            <Button
-                                title='Save'
-                                icon={false}
-                                onClick={saveEditing}
-                            />
+                            <Button title="Cancel" icon={false} onClick={cancelEditing} />
+                            <Button title="Save" icon={false} onClick={saveEditing} />
                         </>
                     )}
                 </div>
             </header>
 
             {rows.length > 0 && (
-                <div className="px-[20px] overflow-y-scroll max-h-[301px]">
+                <div className="px-[20px] overflow-y-auto max-h-[301px]">
                     {rows.map((row) => (
                         <div
                             key={row.id}
@@ -95,7 +85,7 @@ export default function InfoCard({ infoCard, onSave }: InfoCardComponentProps) {
                             {isEditing ? (
                                 <input
                                     type="text"
-                                    value={editedValues[row.id] ?? ""}
+                                    value={editedValues[row.id] ?? ''}
                                     onChange={(e) => handleChange(row.id, e.target.value)}
                                     className="border border-bg-border rounded px-2 py-1 w-full"
                                 />
