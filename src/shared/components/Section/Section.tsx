@@ -136,27 +136,27 @@ export default function Section({ title, tabs, info, customerId }: SectionProps)
     };
 
     return (
-        <section className="bg-bg-card rounded-[10px] pb-[30px]">
-            <header className="bg-bg-secondary rounded-[10px] text-bg-card p-[17px] font-semibold text-[30px] flex items-center gap-[14px]">
+        <section className="bg-bg-card rounded-[10px] pb-[20px] lg:pb-[30px] min-w-0 w-full">
+            <header className="bg-bg-secondary rounded-[10px] text-bg-card p-[12px] lg:p-[17px] font-semibold text-[16px] sm:text-[20px] lg:text-[30px] flex items-center gap-[10px] lg:gap-[14px]">
                 <SectionIcon />
-                {title}
+                <span className="break-words min-w-0">{title}</span>
             </header>
-            <div className="mt-[30px]">
+            <div className="mt-[16px] lg:mt-[30px]">
                 <Tabs tabs={sectionTabs} onSelect={handleSelectTab} />
 
                 {(!activeTabInfo || activeTabInfo.data.length === 0) && (
-                    <p className="pl-[20px] mt-[20px]">No information</p>
+                    <p className="px-[14px] lg:pl-[20px] mt-[16px] lg:mt-[20px]">No information</p>
                 )}
 
                 {activeTabInfo?.tab === 'order' && activeTabInfo.columns.length > 0 && (
-                    <div className="mt-[30px] px-[20px] overflow-x-auto">
-                        <table className="w-full border-collapse text-[16px]">
+                    <div className="mt-[16px] lg:mt-[30px] px-[14px] lg:px-[20px] overflow-x-auto">
+                        <table className="w-full border-collapse text-[12px] sm:text-[14px] lg:text-[16px] min-w-[700px]">
                             <thead>
                             <tr className="bg-bg-card">
                                 {activeTabInfo.columns.map((col) => (
                                     <th
                                         key={col.key}
-                                        className="text-left font-semibold text-text-primary px-[14px] py-[12px] border border-bg-border"
+                                        className="text-left font-semibold text-text-primary px-[10px] lg:px-[14px] py-[10px] lg:py-[12px] border border-bg-border whitespace-nowrap"
                                     >
                                         {col.title}
                                     </th>
@@ -169,7 +169,7 @@ export default function Section({ title, tabs, info, customerId }: SectionProps)
                                     {activeTabInfo.columns.map((col) => (
                                         <td
                                             key={col.key}
-                                            className="px-[14px] py-[10px] border border-bg-border text-text-primary"
+                                            className="px-[10px] lg:px-[14px] py-[8px] lg:py-[10px] border border-bg-border text-text-primary"
                                         >
                                             {row.values[col.key] ?? ''}
                                         </td>
@@ -184,7 +184,7 @@ export default function Section({ title, tabs, info, customerId }: SectionProps)
                                             <select
                                                 value={draftRow[col.key] ?? ''}
                                                 onChange={(e) => handleDraftChange(col.key, e.target.value)}
-                                                className="w-full px-[14px] py-[10px] bg-transparent outline-none text-text-secondary"
+                                                className="w-full px-[10px] lg:px-[14px] py-[8px] lg:py-[10px] bg-transparent outline-none text-text-secondary"
                                             >
                                                 <option value="" disabled>
                                                     {col.placeholder}
@@ -201,7 +201,7 @@ export default function Section({ title, tabs, info, customerId }: SectionProps)
                                                 value={draftRow[col.key] ?? ''}
                                                 onChange={(e) => handleDraftChange(col.key, e.target.value)}
                                                 placeholder={col.placeholder}
-                                                className="w-full px-[14px] py-[10px] bg-transparent outline-none text-text-secondary placeholder:text-text-secondary"
+                                                className="w-full px-[10px] lg:px-[14px] py-[8px] lg:py-[10px] bg-transparent outline-none text-text-secondary placeholder:text-text-secondary"
                                             />
                                         )}
                                     </td>
@@ -211,13 +211,13 @@ export default function Section({ title, tabs, info, customerId }: SectionProps)
                         </table>
 
                         {hasDraft && (
-                            <div className="flex justify-end items-center gap-[16px] mt-[16px]">
+                            <div className="flex flex-col sm:flex-row sm:justify-end sm:items-center gap-[8px] sm:gap-[16px] mt-[16px]">
                                 {showError && (
-                                    <span className="text-red-500 text-[16px]">
+                                    <span className="text-red-500 text-[13px] lg:text-[16px]">
                                         Please fill in all fields
                                     </span>
                                 )}
-                                <Button title="Save" icon={false} onClick={handleSaveDraft} />
+                                <Button title="Save" icon={false} onClick={handleSaveDraft} className="self-start sm:self-auto" />
                             </div>
                         )}
                     </div>

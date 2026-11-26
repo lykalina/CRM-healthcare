@@ -53,10 +53,12 @@ export default function InfoCard({ infoCard, onSave }: InfoCardComponentProps) {
     };
 
     return (
-        <div className="bg-bg-card rounded-[10px] pb-[63px]">
-            <header className="flex justify-between items-center pt-[20px] pl-[20px] pr-[30px] mb-[30px]">
-                <p className="text-[22px] font-bold">{title}</p>
-                <div className="flex gap-2">
+        <div className="bg-bg-card rounded-[10px] pb-[20px] lg:pb-[63px] min-w-0 w-full">
+            <header className="flex justify-between items-center gap-[12px] pt-[14px] lg:pt-[20px] px-[14px] lg:pl-[20px] lg:pr-[30px] mb-[16px] lg:mb-[30px]">
+                <p className="text-[16px] sm:text-[18px] lg:text-[22px] font-bold break-words min-w-0">
+                    {title}
+                </p>
+                <div className="flex gap-2 shrink-0">
                     {!isEditing ? (
                         <button
                             type="button"
@@ -75,22 +77,26 @@ export default function InfoCard({ infoCard, onSave }: InfoCardComponentProps) {
             </header>
 
             {rows.length > 0 && (
-                <div className="px-[20px] overflow-y-auto max-h-[301px]">
+                <div className="px-[14px] lg:px-[20px] overflow-y-auto max-h-[301px]">
                     {rows.map((row) => (
                         <div
                             key={row.id}
-                            className="grid grid-cols-[200px_1fr] gap-x-[20px] py-[10px] border-b border-bg-border last:border-b-0 items-center"
+                            className="grid grid-cols-1 sm:grid-cols-[120px_1fr] lg:grid-cols-[200px_1fr] gap-x-[20px] gap-y-[2px] py-[10px] border-b border-bg-border last:border-b-0 items-start"
                         >
-                            <span className="text-text-secondary">{row.title}</span>
+                            <span className="text-text-secondary text-[13px] lg:text-[16px]">
+                                {row.title}
+                            </span>
                             {isEditing ? (
                                 <input
                                     type="text"
                                     value={editedValues[row.id] ?? ''}
                                     onChange={(e) => handleChange(row.id, e.target.value)}
-                                    className="border border-bg-border rounded px-2 py-1 w-full"
+                                    className="border border-bg-border rounded px-2 py-1 w-full text-[13px] lg:text-[16px]"
                                 />
                             ) : (
-                                <span className="text-text-primary">{row.value}</span>
+                                <span className="text-text-primary text-[13px] lg:text-[16px] break-words min-w-0">
+                                    {row.value}
+                                </span>
                             )}
                         </div>
                     ))}

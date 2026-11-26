@@ -1,5 +1,5 @@
-import type {CustomerListItem} from "../../../services/customerApi.ts";
-import Button from "../../../shared/components/Button/Button.tsx";
+import type { CustomerListItem } from '../../../services/customerApi';
+import Button from '../../../shared/components/Button/Button';
 
 interface CustomersListProps {
     customers: CustomerListItem[];
@@ -19,38 +19,36 @@ export default function CustomersList({
                                           onShow,
                                       }: CustomersListProps) {
     if (isLoading) {
-        return <p className="mt-[30px] pl-[20px]">Loading...</p>;
+        return <p className="mt-[24px] lg:mt-[30px]">Loading...</p>;
     }
 
     if (isError) {
         return (
-            <div className="mt-[30px] pl-[20px]">
+            <div className="mt-[24px] lg:mt-[30px]">
                 <p>Failed to load customers</p>
-                <Button
-                    title='Retry'
-                    onClick={onRetry}
-                />
+                <Button title="Retry" onClick={onRetry} className="mt-[10px]" />
             </div>
         );
     }
 
     if (isEmpty) {
-        return <p className="mt-[30px] pl-[20px]">No customers</p>;
+        return <p className="mt-[24px] lg:mt-[30px]">No customers</p>;
     }
 
     return (
-        <div className="mt-[50px] grid grid-cols-1 gap-[20px]">
+        <div className="mt-[24px] lg:mt-[50px] flex flex-col gap-[12px] lg:gap-[20px]">
             {customers.map((customer) => (
                 <div
                     key={customer.id}
-                    className="bg-bg-card rounded-[10px] p-[20px] flex justify-between items-center"
+                    className="bg-bg-card rounded-[10px] p-[14px] lg:p-[20px] flex flex-col sm:flex-row sm:justify-between sm:items-center gap-[10px] sm:gap-[20px] w-full"
                 >
-                    <span className="text-[20px] font-semibold text-text-primary">
+                    <span className="text-[16px] lg:text-[20px] font-semibold text-text-primary break-words min-w-0">
                         {customer.name}
                     </span>
                     <Button
-                        title='Show information'
+                        title="Show information"
                         onClick={() => onShow(customer.id)}
+                        className="self-start sm:self-auto shrink-0"
                     />
                 </div>
             ))}

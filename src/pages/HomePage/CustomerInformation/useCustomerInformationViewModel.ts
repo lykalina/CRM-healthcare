@@ -20,11 +20,7 @@ function readFromStorage(customerId: string, block: 'information' | 'master'): I
 }
 
 function writeToStorage(customerId: string, block: 'information' | 'master', rows: InfoCardRow[]) {
-    try {
-        localStorage.setItem(getStorageKey(customerId, block), JSON.stringify(rows));
-    } catch {
-        // localStorage может быть недоступен (приватный режим, лимит) — молча игнорируем
-    }
+    localStorage.setItem(getStorageKey(customerId, block), JSON.stringify(rows));
 }
 
 function applyLocalOverrides(card: InfoCardProps | undefined, overrides: InfoCardRow[] | null): InfoCardProps | undefined {
@@ -39,7 +35,6 @@ export function useCustomerInformationViewModel(customerId: string) {
     const [information, setInformation] = useState<InfoCardProps | undefined>(undefined);
     const [master, setMaster] = useState<InfoCardProps | undefined>(undefined);
 
-    // при получении данных с бэка — накладываем локальные правки из localStorage
     useEffect(() => {
         if (!data) return;
 

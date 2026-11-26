@@ -1,19 +1,16 @@
-import { useState } from 'react';
-import Tabs, { type TabItem } from '../../shared/components/Tabs/Tabs';
+import Tabs from '../../shared/components/Tabs/Tabs';
 import { useCustomersListViewModel } from './CustomersList/useCustomersListViewModel';
 import CustomersList from './CustomersList/CustomersList';
 import CustomerInformation from './CustomerInformation/CustomerInformation';
-import {useGetCustomerQuery} from "../../services/customerApi.ts";
-
-const initialTabs: TabItem[] = [
-    { title: 'Home', id: 'home', selected: false },
-    { title: 'Customers', id: 'customers', selected: true },
-    { title: 'Customer information', id: 'information', selected: false },
-];
+import { useHomeTabsViewModel } from './useHomeTabsViewModel';
+import { useSelectedCustomerViewModel } from './useSelectedCustomerViewModel';
 
 export default function HomePage() {
-    const [tabs, setTabs] = useState<TabItem[]>(initialTabs);
-    const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(null);
+    const { tabs, activeTab, handleSelectTab } = useHomeTabsViewModel();
+
+    const { selectedCustomerId, handleShowCustomer } = useSelectedCustomerViewModel({
+        onNavigateToInformation: () => handleSelectTab('information'),
+    });
 
     const {
         customers,
@@ -23,41 +20,25 @@ export default function HomePage() {
         refetch: refetchCustomers,
     } = useCustomersListViewModel();
 
-    const handleSelectTab = (id: string) => {
-        setTabs((prev) =>
-            prev.map((tab) => ({
-                ...tab,
-                selected: tab.id === id,
-            }))
-        );
-    };
-
-    const handleShowCustomer = (id: number) => {
-        setSelectedCustomerId(String(id));
-        handleSelectTab('information');
-    };
-
-    const activeTab = tabs.find((tab) => tab.selected);
-
     return (
-        <div className="font-text overscroll-x-none min-h-screen">
-            <header className="h-[84px]">
-                <h1 className="font-title text-[34px] text-font-accent font-semibold">
+        <div className="font-text overscroll-x-none min-h-screen pb-[28px]">
+            <header className="pt-[16px] lg:pt-0 lg:h-[84px]">
+                <h1 className="font-title text-[22px] sm:text-[26px] lg:text-[34px] text-font-accent font-semibold">
                     {activeTab?.title}
                 </h1>
 
                 {selectedCustomerId && activeTab?.id === 'information' && (
-                    <p className="text-[18px] text-font-primary mt-[20px]">
+                    <p className="text-[14px] lg:text-[18px] text-font-primary mt-[8px] lg:mt-[20px]">
                         Customer ID: <span>{selectedCustomerId}</span>
                     </p>
                 )}
             </header>
 
-            <main className="mt-[50px]">
+            <main className="mt-[24px] lg:mt-[50px]">
                 <Tabs tabs={tabs} onSelect={handleSelectTab} />
 
                 {activeTab?.id === 'home' && (
-                    <p className="mt-[50px]">No information</p>
+                    <p className="mt-[14px] lg:mt-[50px]">No information</p>
                 )}
 
                 {activeTab?.id === 'customers' && (
@@ -76,7 +57,9 @@ export default function HomePage() {
                 )}
 
                 {activeTab?.id === 'information' && !selectedCustomerId && (
-                    <p className="mt-[50px] pl-[20px]">Select a customer to view details</p>
+                    <p className="mt-[24px] lg:mt-[50px] lg:pl-[20px]">
+                        Select a customer to view details
+                    </p>
                 )}
             </main>
         </div>
