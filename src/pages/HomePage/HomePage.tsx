@@ -21,7 +21,7 @@ export default function HomePage() {
     } = useCustomersListViewModel();
 
     return (
-        <div className="font-text overscroll-x-none min-h-screen pb-[28px]">
+        <div className="font-text overscroll-x-none min-h-screen pb-[28px] pt-[60px] lg:pt-[50px]">
             <header className="pt-[16px] lg:pt-0 lg:h-[84px]">
                 <h1 className="font-title text-[22px] sm:text-[26px] lg:text-[34px] text-font-accent font-semibold">
                     {activeTab?.title}

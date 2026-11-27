@@ -11,7 +11,7 @@ export default function MainLayout() {
             <Menu isOpen={isOpen} onToggle={toggle} />
 
             <main
-                className={`pt-[60px] lg:pt-[50px] px-[16px] lg:pr-[20px] pb-[72px] lg:pb-[28px] transition-[padding] duration-300 ease-in-out ${
+                className={`px-[16px] lg:pr-[20px] pb-[72px] lg:pb-[28px] transition-[padding] duration-300 ease-in-out ${
                     isOpen ? "lg:pl-[220px]" : "lg:pl-[120px]"
                 } lg:mr-[100px]`}
             >
